@@ -10,7 +10,12 @@ import meteordevelopment.meteorclient.utils.Utils;
 import meteordevelopment.meteorclient.utils.render.color.Color;
 import meteordevelopment.orbit.EventHandler;
 import net.minecraft.block.entity.*;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SusChunkFinder extends Module {
     private final Setting<Integer> minimumStorage = settings.getDefaultGroup().add(new IntSetting.Builder()
@@ -35,16 +40,19 @@ public class SusChunkFinder extends Module {
         count = 0;
         if (mc.world == null || mc.player == null) return;
 
+        Map<ChunkPos, Integer> storageByChunk = new HashMap<>();
+        for (BlockEntity entity : Utils.blockEntities()) {
+            if (!isStorage(entity)) continue;
+            BlockPos blockPos = entity.getPos();
+            ChunkPos chunkPos = new ChunkPos(blockPos);
+            storageByChunk.merge(chunkPos, 1, Integer::sum);
+        }
+
         int y = mc.player.getBlockY();
         for (Chunk chunk : Utils.chunks()) {
-            int storage = 0;
-            for (BlockEntity entity : chunk.getBlockEntities().values()) {
-                if (isStorage(entity)) storage++;
-            }
+            ChunkPos pos = chunk.getPos();
+            if (storageByChunk.getOrDefault(pos, 0) < minimumStorage.get()) continue;
 
-            if (storage < minimumStorage.get()) continue;
-
-            var pos = chunk.getPos();
             event.renderer.box(pos.getStartX(), y, pos.getStartZ(),
                 pos.getStartX() + 16, y + 2, pos.getStartZ() + 16,
                 side, line, ShapeMode.Both, 0);
