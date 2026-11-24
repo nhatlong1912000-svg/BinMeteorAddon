@@ -11,10 +11,13 @@ public class ChunkInfo extends Module {
 
     @Override
     public void onActivate() {
-        if (mc.player == null) return;
+        if (mc.player == null) {
+            warning("Join a world before enabling this module.");
+            return;
+        }
+
         ChunkPos pos = mc.player.getChunkPos();
         info("Current chunk: X %d, Z %d".formatted(pos.x, pos.z));
         info("Region: X %d, Z %d".formatted(pos.x >> 5, pos.z >> 5));
-        toggle();
     }
 }
