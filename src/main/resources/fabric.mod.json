@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "binmeteor",
+  "version": "${version}",
+  "name": "Bin Meteor",
+  "description": "A red and black utility addon for Meteor Client.",
+  "authors": ["Bin"],
+  "contact": { "sources": "https://github.com/nhatlong1912000-svg/BinMeteorAddon" },
+  "environment": "client",
+  "entrypoints": { "meteor": ["dev.binmeteor.BinMeteor"] },
+  "custom": {
+    "meteor-client:color": "210,25,35",
+    "modmenu": { "parent": { "id": "meteor-client" } }
+  },
+  "depends": {
+    "java": ">=21",
+    "minecraft": "${mc_version}",
+    "meteor-client": "*"
+  }
+}
