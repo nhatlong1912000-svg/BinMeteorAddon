@@ -1,7 +1,7 @@
 name: Build Bin Meteor
 on:
   push:
-    branches: [ main ]
+    branches: [ main, v2-settings-foundation ]
   workflow_dispatch:
 
 jobs:
