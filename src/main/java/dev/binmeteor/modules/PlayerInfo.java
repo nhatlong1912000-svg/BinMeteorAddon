@@ -20,7 +20,7 @@ public class PlayerInfo extends Module {
         BlockPos pos = mc.player.getBlockPos();
         info("Position: %d, %d, %d".formatted(pos.getX(), pos.getY(), pos.getZ()));
         info("Dimension: %s".formatted(mc.world.getRegistryKey().getValue()));
-        info("Facing: %s".formatted(mc.player.getHorizontalFacing().getName()));
+        info("Facing: %s".formatted(mc.player.getHorizontalFacing().toString()));
         toggle();
     }
 }
