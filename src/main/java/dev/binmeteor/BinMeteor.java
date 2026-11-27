@@ -19,6 +19,8 @@ public class BinMeteor extends MeteorAddon {
         Modules.get().add(new dev.binmeteor.modules.SusChunkFinder());
         Modules.get().add(new dev.binmeteor.modules.StorageESP());
         Modules.get().add(new dev.binmeteor.modules.ChunkOverlayRenderer());
+        Modules.get().add(new dev.binmeteor.modules.SusZoneFX());
+        Modules.get().add(new dev.binmeteor.modules.Hub());
     }
 
     @Override
