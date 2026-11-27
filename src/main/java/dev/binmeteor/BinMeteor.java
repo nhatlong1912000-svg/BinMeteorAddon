@@ -15,6 +15,7 @@ public class BinMeteor extends MeteorAddon {
     public void onInitialize() {
         LOG.info("Bin Meteor is loading.");
         Modules.get().add(new dev.binmeteor.modules.ChunkInfo());
+        Modules.get().add(new dev.binmeteor.modules.PlayerInfo());
         Modules.get().add(new dev.binmeteor.modules.ChunkFinder());
         Modules.get().add(new dev.binmeteor.modules.SusChunkFinder());
         Modules.get().add(new dev.binmeteor.modules.StorageESP());
